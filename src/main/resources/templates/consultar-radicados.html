@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermarket PQRS</title>
+</head>
+<body>
+  <H1>CONSULTAR PQRS ADMIN</H1>
+  <form action="#" method="post">
+    <label>Selecciona un tipo de radicado:</label>
+    <select id="filtroTipoRadicado" name="filtroTipoRadicado">
+      <option value="" disabled selected>Seleccione una opción</option>
+      <option th:each="tipo : ${tiposRadicado}" th:value="${tipo.idTipoRadicado}" th:text="${tipo.nombreRadicado}" />
+    </select>
+
+    <label>Selecciona un estado del radicado:</label>
+    <select id="filtroEstadoRadicado" name="filtroEstadoRadicado">
+      <option value="" disabled selected>Seleccione una opción</option>
+      <option th:each="estado : ${estadoRadicado}" th:value="${estado.idEstadoPqrs}" th:text="${estado.nombreEstado}" />
+    </select>
+    <button type="submit" name="filtrar" value="true">Filtrar</button>
+  </form>
+  <div th:if="${#lists.isEmpty(radicados)}">
+    <h2>No se encontraron resultados</h2>
+  </div>
+  <table th:if="${!#lists.isEmpty(radicados)}">
+    <thead>
+      <tr>
+        <th>Número de radicado</th>
+        <th>Fecha del radicado</th>
+        <th>Tipo de radicado (PQRS)</th>
+        <th>Comentarios</th>
+        <th>Anexos</th>
+        <th>Estado del radicado</th>
+        <th>Justificación del estado</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr th:each="radicado : ${radicados}">
+        <td th:text="${radicado.numeroRadicado}"></td>
+        <td th:text="${radicado.fechaRadicado}"></td>
+        <td th:text="${radicado.idTipoRadicado.nombreRadicado}"></td>
+        <td th:text="${radicado.comentariosRadicado}"></td>
+        <td th:text="${radicado.anexosRadicado}"></td>
+        <td th:text="${radicado.idEstadoPqrs.nombreEstado}"></td>
+        <td th:text="${radicado.justificacionRadicado}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
