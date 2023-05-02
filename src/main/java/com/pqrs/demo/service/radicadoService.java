@@ -1,6 +1,5 @@
 package com.pqrs.demo.service;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
 import com.pqrs.demo.entity.PQRS;
 import com.pqrs.demo.repository.radicadoRepository;

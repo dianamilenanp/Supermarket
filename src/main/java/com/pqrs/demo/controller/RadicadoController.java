@@ -23,6 +23,12 @@ public class RadicadoController {
     }
 
     @GetMapping("/")
+    public String mostrarInicio(Model modelo) {
+        
+        return "inicio";
+    }
+
+    @GetMapping("/consultar-radicados")
     public String mostrarRadicados(Model modelo) {
         List<PQRS> radicados = radicadoService.getAllByOrderByNumeroRadicadoDesc();
         List<TipoRadicado> tiposRadicado = tipoRadicadoService.getAllTipoRadicados();
@@ -33,7 +39,7 @@ public class RadicadoController {
         return "consultar-radicados";
     }
 
-    @PostMapping("/")
+    @PostMapping("/consultar-radicados")
     public String manejarFiltro(@RequestParam(name = "filtroTipoRadicado", required = false) Integer tipoRadicadoId,
             @RequestParam(name = "filtroEstadoRadicado", required = false) Integer estadoRadicadoId,
             Model modelo, HttpServletRequest request) {
