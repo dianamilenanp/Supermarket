@@ -91,7 +91,7 @@
         </div>
       </div>
     </form>
-
+    <button class="btn btn-primary btn-block font-weight-bold">Descargar reporte</button>
   </div>
   <div class="container-fluid py-5">
 
@@ -102,7 +102,7 @@
     <table class="table table-striped" th:if="${!#lists.isEmpty(radicados)}">
       <thead>
         <tr>
-          <th scope="col">Número de radicado</th>
+          <th scope="col" >Número de radicado</th>
           <th scope="col">Fecha del radicado</th>
           <th scope="col">Tipo de radicado</th>
           <th scope="col">Comentarios</th>
@@ -113,13 +113,16 @@
       </thead>
       <tbody>
         <tr th:each="radicado : ${radicados}">
-          <td th:text="${radicado.numeroRadicado}"></td>
+          <td ><a th:href="'/detalle-radicado/' + ${radicado.numeroRadicado}" style="font-weight: bold;">
+            [[${radicado.numeroRadicado}]]
+          </a></td>
           <td th:text="${radicado.fechaRadicado}"></td>
           <td th:text="${radicado.idTipoRadicado.nombreRadicado}"></td>
           <td th:text="${radicado.comentariosRadicado}"></td>
           <td th:text="${radicado.anexosRadicado}"></td>
           <td th:text="${radicado.idEstadoPqrs.nombreEstado}"></td>
           <td th:text="${radicado.justificacionRadicado}"></td>
+          <td><button class="btn btn-primary btn-block font-weight-bold">Descargar Anexo</button></td>
         </tr>
       </tbody>
     </table>
